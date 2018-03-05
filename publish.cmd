@@ -4,6 +4,6 @@ SET /P _NUGET_API_KEY="API Key [%_NUGET_API_KEY%] "
 
 for %%f in ("%~dp0Output\*.nupkg") do (
      echo %%~f
-     nuget.exe push "%%~f" %_NUGET_API_KEY%
+     nuget.exe push "%%~f" %_NUGET_API_KEY% -Source https://api.nuget.org/v3/index.json
 )
 

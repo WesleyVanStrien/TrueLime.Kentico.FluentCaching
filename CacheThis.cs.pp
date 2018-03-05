@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CMS.Helpers;
+using System;
 
 namespace $rootnamespace$.FluentCaching
 {

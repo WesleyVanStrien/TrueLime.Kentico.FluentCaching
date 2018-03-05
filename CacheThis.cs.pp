@@ -8,6 +8,9 @@ namespace $rootnamespace$.FluentCaching
     /// </summary>
     public class CacheThis
     {
+        public static Func<string> GetCurrentCulture = () => CMS.Localization.LocalizationContext.PreferredCultureCode;
+        public static Func<string> GetCurrentSiteName = () => CMS.SiteProvider.SiteContext.CurrentSiteName;
+
         private CacheThis()
         {
         }

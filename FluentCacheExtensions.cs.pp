@@ -151,5 +151,24 @@ namespace $rootnamespace$.FluentCaching
             settings.CacheKeyParts.Add(MembershipContext.AuthenticatedUser.UserID.ToString());
             return settings;
         }
+		
+		public static CacheThis WithParametersIfNotNull(this CacheThis settings, KeyValuePair<string, string>[] cacheParams)
+        {
+            if (cacheParams == null || cacheParams.Length == 0)
+                return settings;
+
+            foreach (var cacheParam in cacheParams)
+            {
+                if (string.IsNullOrEmpty(cacheParam.Key) || string.IsNullOrEmpty(cacheParam.Value))
+                    continue;
+
+                settings.CacheKeyParts.Add(
+                    cacheParam.Value != null
+                        ? FormattableString.Invariant($"{cacheParam.Key}={cacheParam.Value}")
+                        : cacheParam.Key);
+            }
+            
+            return settings;
+        }
     }
 }

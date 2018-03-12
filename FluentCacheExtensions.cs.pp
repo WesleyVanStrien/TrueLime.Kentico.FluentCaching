@@ -28,6 +28,16 @@ namespace $rootnamespace$.FluentCaching
 
             return settings;
         }
+		
+		public static CacheThis DependsOnPageTypes(this CacheThis settings, string[] pageTypes)
+        {
+            foreach (var pageType in pageTypes)
+            {
+                settings.DependencyKeys.Add(FluentCacheHelper.GetDependencyCacheKeyForPageType(pageType, settings.Sitename));
+            }
+            
+            return settings;
+        }
 
         public static CacheThis WithDependencies(this CacheThis settings, string[] dependencies)
         {
